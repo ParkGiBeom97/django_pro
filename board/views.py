@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Board, Reply
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 # Create your views here.
 
@@ -54,7 +55,7 @@ def delete(request, bpk):
     if b.writer == request.user:
         b.delete()
     else:
-        pass
+        messages.info(request, "삭제권한이 없습니다.")
     return redirect('board:index')
 
 
@@ -98,7 +99,7 @@ def dreply(request, bpk, rpk):
     if r.replyer == request.user:
         r.delete()
     else:
-        pass
+        messages.info(request, "삭제권한이 없습니다.")
     return redirect("board:detail", bpk)
 
 def likey(request, bpk):
