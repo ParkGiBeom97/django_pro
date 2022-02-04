@@ -20,13 +20,13 @@ def index(request):
             from acc.models import User
             try:
                 u = User.objects.get(username=kw)
-                b = Board.objects.filter(writer=u)
+                b = Board.objects.filter(writer=u).order_by('-pubdate')
             except:
-                b = Board.objects.none()
+                b = Board.objects.none().order_by('-pubdate')
         elif cate =="con":
             b = Board.objects.filter(content__contains=kw)
     else:
-        b = Board.objects.all()
+        b = Board.objects.all().order_by('-pubdate')
 
     pag = Paginator(b, 10)
     obj = pag.get_page(pg)
