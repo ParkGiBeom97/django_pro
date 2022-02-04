@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block con %}
+
+    <div class="container mt-5 mb-5">
+
+        <h1><b>북마크 생성</b></h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="text-end">
+                <input type="checkbox" name="impo" class="btn-check" id="btncheck2" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck2">✨</label>
+            </div>
+            <div class="mt-2">
+                <input type="text" name="sname" class="form-control mb-3" placeholder="SITE 이름을 넣어주세요">
+                <input type="text" name="surl" class="form-control mb-3" placeholder="SITE URL 을 넣어주세요">
+                <textarea class="form-control mb-3" name="scon" placeholder="SITE 설명 간단히"></textarea>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-dark">생성</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
